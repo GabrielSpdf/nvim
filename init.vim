@@ -20,7 +20,7 @@ Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
 Plug 'https://github.com/terryma/vim-multiple-cursors' " CTRL + N for multiple cursors
 Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
 Plug 'https://github.com/neoclide/coc.nvim'  " Auto Completion
-
+Plug 'https://github.com/m4xshen/autoclose.nvim' "Auto Completion ( && {
 
 
 call plug#end()
@@ -59,6 +59,8 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
 inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
+inoremap <silent><expr> <tab> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<TAB>"
+inoremap <silent><expr> <cr> "\<c-g>u\<CR>"
 
-
+:lua require("autoclose").setup()
 
