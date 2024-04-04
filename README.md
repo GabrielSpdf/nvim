@@ -22,15 +22,24 @@ Download the init.vim file from this repository and move it to your newly create
 4. Install Plugins
 Open init.vim in Neovim and install the plugins:
 > <pre>nvim init.vim
+
+5. Create /plugged
+> <pre>mkdir ~/.config/nvim/plugged
+
+6. Install vim-plug 
+> <pre>sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+       
 In Neovim, enter the following command to start the plugin installation:
 > <pre>:PlugInstall
 
-5. Resolve Additional Dependencies for CoC
+7. Resolve Additional Dependencies for CoC
 The Conquer of Completion (CoC) plugin requires Node.js, npm, and Yarn. Install these using pacman and build CoC:
 > <pre>sudo pacman -S nodejs
 > sudo pacman -S npm
 > cd ~/.config/nvim/plugged
-> sudo pacman -S yarn
+> sudo npm install -g yarn 
+> cd plugged/coc.nvim
+> sudo npm install -g yarn
 > yarn install
 > yarn build
 
@@ -40,3 +49,4 @@ If you encounter any issues during the installation, please refer to the officia
 ## Additional Resources
 For further guidance and tips on setting up and using Neovim, refer to the following video tutorial:
 - *[Neovim Setup Guide](https://www.youtube.com/watch?v=JWReY93Vl6g&t=1046s)*
+- *[vim-plug tutorial](https://github.com/junegunn/vim-plug)*
