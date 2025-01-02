@@ -61,6 +61,7 @@ require('packer').startup(function(use)
 		end,
 	})
 	use 'tpope/vim-surround'
+	use 'tpope/vim-fugitive'
 	use 'preservim/nerdtree'
 	use 'tpope/vim-commentary'
 	use 'vim-airline/vim-airline'
