@@ -172,11 +172,50 @@ require('packer').startup(function(use)
 		   -- border = "rounded",
 	   -- },
 	-- })
+	use {
+	   "lukas-reineke/indent-blankline.nvim",
+		event = "BufReadPost",
+	   config = function()
+		  require("ibl").setup()
+	   end,
+	   main = "ibl",
+	   opts = {}
+	}
+	use {
+	  'nvim-lualine/lualine.nvim',
+	  requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+	}
+	require'lualine'.setup{
+		options = {
+			theme = 'material-stealth'
+		}
+	}
 	require'barbar'.setup {
 		animation = true,
 		auto_hide = false,
 		tabpages = true,
 		clickable = true,
+		focus_on_close = 'left',
+		highlight_alternate = true,
+		icons =
+		{
+			diagnostics = { 
+				[vim.diagnostic.severity.ERROR] = {enabled = true, icon = ''}, 
+				[vim.diagnostic.severity.WARN] = {enabled = true, icon = ''}
+			},
+		}
 	}
+	require'material'.setup {
+	  custom_highlights = {
+		-- BufferCurrent = { bg = "#EFDD8D", fg = "#22181C" },
+		-- BufferInactive = { bg = "#1f2335", fg = "#7e9cd8" },
+		-- BufferInactive = { bg = "#1f2335", fg = "#7e9cd8" },
+		-- BufferInactiveSign = { bg = "#1f2335", fg = "#7e9cd8" },
+	  },
+		disable = {
+			-- background = true
+		},
+	}
+
 	vim.cmd("colorscheme material-deep-ocean")
 end)
