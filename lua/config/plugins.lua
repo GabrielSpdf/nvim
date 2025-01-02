@@ -83,7 +83,58 @@ require('packer').startup(function(use)
 		requires = { 'nvim-lua/plenary.nvim' }
 	}
 	use 'nvim-tree/nvim-web-devicons' 
-	use 'lewis6991/gitsigns.nvim'     
+    use {
+         'lewis6991/gitsigns.nvim',
+         config = function()
+             require('gitsigns').setup {
+                 signs = {
+                     add          = { text = '+' },
+                     change       = { text = '│' },
+                     delete       = { text = '-' },
+                     topdelete    = { text = '‾' },
+                     changedelete = { text = '~' },
+                 },
+                signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+ 				numhl = true,
+ 				on_attach = function(bufnr)
+ 					local gs = package.loaded.gitsigns
+ 				
+ 					local function map(mode, l, r, opts)
+ 					  opts = opts or {}
+ 					  opts.silent = opts.silent ~= false
+ 					  vim.keymap.set(mode, l, r, opts)
+ 					end
+
+ 					map('n', ']c', function()
+ 					  if vim.wo.diff then return ']c' end
+ 					  vim.schedule(function() gs.next_hunk() end)
+ 					  return '<Ignore>'
+ 					end, {expr=true})
+
+ 					map('n', '[c', function()
+ 					  if vim.wo.diff then return '[c' end
+ 					  vim.schedule(function() gs.prev_hunk() end)
+ 					  return '<Ignore>'
+ 					end, {expr=true})
+ 				end,
+                 current_line_blame_opts = {
+                     virt_text = true,
+                     virt_text_pos = 'eol',
+                     delay = 500,
+ 					virt_text_prefix = '  ',
+                 },
+                 watch_gitdir = {
+                     interval = 1000,
+                     follow_files = true
+                 },
+                 
+                 preview_config = {
+                   border = "rounded",
+                 }
+             }
+         end
+     }
+
 	use 'romgrk/barbar.nvim'
 	use 'neovim/nvim-lspconfig'
 	use {
