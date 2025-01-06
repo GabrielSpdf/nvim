@@ -10,6 +10,7 @@ vim.o.mouse = 'a'
 vim.o.ignorecase = true
 vim.o.termguicolors = true
 vim.opt.termguicolors = true
+vim.opt.clipboard = "unnamedplus"
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 -- vim.opt.laststatus = 0
 

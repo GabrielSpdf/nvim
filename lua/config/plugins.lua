@@ -192,7 +192,7 @@ require('packer').startup(function(use)
 	}
 	require'barbar'.setup {
 		animation = true,
-		auto_hide = false,
+		auto_hide = true,
 		tabpages = true,
 		clickable = true,
 		focus_on_close = 'left',
